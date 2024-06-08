@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% if category %}
+<div>
+    <div>
+        <p class="text-center"><a href="{% url 'home' %}">Our categories</a></p>
+    </div>
+</div>
+{% endif %}
+<div>
+{% if category %}
+<img src="{{category.image.url}}" style="width:1500px; height:600px;">
+</div>
+
+
+
+<br>
+<div>
+    <h1>{{category.name}}</h1>
+    <p>{{category.description}}</p>
+</div>
+{% else %}
+<div>
+  <img src="{% static 'img/image.png' %}" alt="Wallpaper_image" style="width:1600px; height:500px">
+
+</div>
+
+
+ <div>
+   <h1 style="text-align:center;color:red; font-size: 56px;"><i>Explore Our Product Collections!!!</i></h1>
+   <p style="1font-family: Arial;"> Welcome to our N N online store, where convenience meets quality! Our e-commerce project is a haven for all your household needs, offering a diverse range of products that cater to various aspects of your daily life. From exquisite utensils to trendy clothes and cutting-edge electronics, we have carefully curated a collection that combines functionality with style..</p>
+ </div>
+{% endif %}
+<div class="container">
+    <div class="row">
+   {% for product in products %}
+        <div class="col-9 col-sm-12 col-md-4">
+
+    <div class="card" style="width: 18rem;">
+  <a href="{{product.get_url}}"><img class="card-img-top" src="{{product.image.url}}" alt="Card image cap" style="width:200px height:100px" ></a>
+  <div class="card-body">
+    <h5 class="card-title">{{product.name}}</h5>
+    <p class="card-text">{{product.price}}</p>
+
+
+
+    <a href="#" class="btn btn-primary">Add to Cart</a>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+</div>
+  </div>
+
+
+{% endblock %}
